@@ -23,8 +23,6 @@ export const Home = () => {
     item.title.toLowerCase().includes(search)
   );
 
-  console.log(filter);
-
   return (
     <div className="w-3/4 m-auto">
       <Profile />
@@ -45,7 +43,7 @@ export const Home = () => {
           className="bg-base-input border border-base-border p-3 rounded-md text-base-text placeholder:text-base-label focus:outline-none focus:border-blue"
         />
       </section>
-      <section className="w-full flex flex-wrap my-12 gap-8 justify-center">
+      <section className="w-full h-full flex flex-wrap my-12 gap-8 justify-center">
         {filter.length > 0
           ? filter.map((post: PostData) => (
               <Post key={post.title} post={post} />

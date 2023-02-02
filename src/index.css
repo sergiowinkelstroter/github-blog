@@ -6,3 +6,15 @@ body {
   @apply bg-base-background;
   font-family: "Nunito", sans-serif;
 }
+
+a {
+  @apply text-blue;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+h3 {
+  font-weight: bold;
+}

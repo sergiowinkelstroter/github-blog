@@ -1,8 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 export interface PostData {
   title: string;
-  updated_at: string;
+  created_at: string;
   url: string;
   body: string;
   number: number;
@@ -13,20 +16,33 @@ interface PostProps {
 }
 
 export const Post = ({ post }: PostProps) => {
+  const navigate = useNavigate();
+
+  let body = post.body;
+  let date = new Date(post.created_at);
+
+  if (body.length > 200) {
+    body = body.substring(200, 0) + "...";
+  }
+
+  const publishedDateRelativeToNow = formatDistanceToNow(date, {
+    locale: ptBR,
+  });
+
   return (
-    <NavLink
-      to={`/post/${post.number}`}
-      className="w-[416px] p-5 bg-base-post rounded-xl shadow-profile flex flex-col"
+    <button
+      onClick={() => navigate(`/post/${post.number}`)}
+      className="w-[416px] h-[260px] p-5 bg-base-post rounded-xl shadow-profile flex flex-col"
     >
       <div className="flex items-start justify-between mb-5 gap-4">
         <h1 className="text-base-title font-bold text-xl">{post.title}</h1>
-        <span className="text-base-span text-sm">Há 1 dia</span>
+        <span className="text-base-span text-sm">
+          {publishedDateRelativeToNow}
+        </span>
       </div>
-      <p className="text-base text-base-text">
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript
+      <p className="text-base text-base-text ">
+        <ReactMarkdown>{body}</ReactMarkdown>
       </p>
-    </NavLink>
+    </button>
   );
 };
