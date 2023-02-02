@@ -30,7 +30,7 @@ export const Post = () => {
     return <h1>Carregando...</h1>;
   }
 
-  let body = data?.body;
+  let body = data!.body;
 
   return (
     <div className="w-3/4 m-auto">

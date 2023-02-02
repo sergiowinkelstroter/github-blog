@@ -16,8 +16,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.5",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.8.0",
-    "remark-gfm": "^3.0.1"
+    "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
